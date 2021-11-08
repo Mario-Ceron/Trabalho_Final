@@ -2,7 +2,7 @@
 #define _ABPPLUS_H_
 
 typedef struct noArvBinaria{
-   char letra;
+   char letra[5];
    int chave;
    struct noArvBinaria *esq;
    struct noArvBinaria *dir;
@@ -19,10 +19,10 @@ ABPPlus* criaABP();
 void imprimeABPIndentado(ABPPlus *arv);
 
 // Funcao que insere um elemento na ABP
-void insereABP(ABPPlus *arv, int chave, char letra);
+void insereABP(ABPPlus *arv, int chave, char letra[]);
 
 // Funcao que busca uma informacao na ABP
-char buscaInfoABP(ABPPlus *arv, int chave);
+char* buscaInfoABP(ABPPlus *arv, int chave);
 
 // Funcao que destroi uma ABP
 void destroiABP(ABPPlus *arv);

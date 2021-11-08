@@ -1,6 +1,7 @@
 #include "abpplus.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 // Funcao que cria uma ABP
 ABPPlus* criaABP(){
@@ -36,11 +37,13 @@ void imprimeABPIndentado(ABPPlus *arv){
 
 
 // Funcao que auxiliar para inserir um elemento na ABP
-NoArvBinaria* insereNodoABP(NoArvBinaria *raiz, int chave, char[5] letra){
+NoArvBinaria* insereNodoABP(NoArvBinaria *raiz, int chave, char letra[]){
    if(raiz == NULL){
       raiz = (NoArvBinaria*)malloc(sizeof(NoArvBinaria));
       raiz->chave = chave;
-      raiz->letra = letra;
+
+       strcpy(raiz->letra, letra);
+
       raiz->esq = NULL;
       raiz->dir = NULL;
    }
@@ -52,34 +55,30 @@ NoArvBinaria* insereNodoABP(NoArvBinaria *raiz, int chave, char[5] letra){
 }
 
 // Funcao que insere um elemento na ABP
-void insereABP(ABPPlus *arv, int chave, char[5] letra){
+void insereABP(ABPPlus *arv, int chave, char letra[]){
    arv->raiz = insereNodoABP(arv->raiz, chave, letra);
 }
 
 
 
 // Funcao auxiliar para buscar uma informacao na ABP
-NoArvBinaria* buscaInfoNodoABP(NoArvBinaria *raiz, int chave, char *letra){
-   if (raiz->chave == chave){
-      (*letra)=raiz->letra;
-      return raiz;
-   }else if(raiz==NULL)
-      return raiz;
+char* buscaInfoNodoABP(NoArvBinaria *raiz, int chave){
+   if(raiz==NULL){
+      return '\0';}
    else if (raiz->chave > chave)
-      return buscaInfoNodoABP(raiz->esq, chave, letra);
+      return buscaInfoNodoABP(raiz->esq, chave);
    else if (raiz->chave < chave)
-      return buscaInfoNodoABP(raiz->dir, chave, letra);
+      return buscaInfoNodoABP(raiz->dir, chave);
    else
-      return raiz;
+      return raiz->letra;
 }
 
 // Funcao que busca uma informacao na ABP
-char buscaInfoABP(ABPPlus *arv, int chave){
-   char letra=' ';
+char* buscaInfoABP(ABPPlus *arv, int chave){
 
-  arv->raiz=buscaInfoNodoABP(arv->raiz, chave, &letra);
+  return buscaInfoNodoABP(arv->raiz, chave);
 
-   return letra;
+
 }
 
 

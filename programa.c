@@ -1,7 +1,7 @@
 /*
 Programa: Trabalho Final
 Objetivos: Programa para traduzir letras para Morse (e vice-versa)
-Autor: Mário Vargas Ceron
+Autor:
 Data:07/11/2021
 */
 
@@ -9,6 +9,8 @@ Data:07/11/2021
 #include <stdio.h>
 #include <string.h>
 #include "abpplus.h"
+
+#define TAM 16
 
 
 //imprime menu principal
@@ -19,12 +21,11 @@ int main(){
    //Declaração de variáveis
    int loop=-1;//Mantem loop do comando while até que loop = 0.
    int caso=0;
-   int nodo;
 
    ABPPlus *codLetras;
    ABPPlus *letrasCod;
 
-   codLetras = criaABP();
+   codLetras = criaABP(); // Cria as arvores
    letrasCod = criaABP();
 
    // inicializaCodLetras(codLetras); // Preenche arvores com as informações necessárias.
@@ -38,6 +39,15 @@ int main(){
       switch(caso){
 
          case 1:{
+
+            char texto[TAM];
+
+            scanf("%s", texto);
+
+            for(int i=0;i<strlen(texto);i++){
+               if(buscaInfoABP(letrasCod, texto[i])!='\0')
+                  printf(" %s",buscaInfoABP(letrasCod, texto[i]));
+            }
 
          break;}
 
@@ -53,6 +63,8 @@ int main(){
 
          case 4:{
 
+         // if(buscaInfoABP(letrasCod, 'A')!='\0')
+         //    printf(" %s",buscaInfoABP(letrasCod, 'A'));
 
          break;}
 
@@ -80,11 +92,11 @@ int main(){
 int menuPrincipal(){
    int sel;
    printf("\n\n          MENU PRINCIPAL \n\n");
-   printf("1. Insere nodo. \n");
-   printf("2. Remove nodo. \n");
+   printf("1. Traducao. \n");
+   printf("2. VOID. \n");
    printf("3. Imprime arvore indentado. \n");
-   printf("4. Imprime arvore indentado. \n");
-   printf("5. Maior mais proximo. \n\n");
+   printf("4. Busca. \n");
+   printf("5. VOID. \n\n");
    printf("6. Sair. \n");
    printf("Acessar:");
 
