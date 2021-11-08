@@ -19,15 +19,21 @@ ABPPlus* criaABP();
 void imprimeABPIndentado(ABPPlus *arv);
 
 // Funcao que insere um elemento na ABP
-void insereABP(ABPPlus *arv, int chave, char letra[]);
+void insereABP(ABPPlus *arv, int chave, char* letra);
 
 // Funcao que busca uma informacao na ABP
 char* buscaInfoABP(ABPPlus *arv, int chave);
+
+// Funcao que busca uma informacao na ABP
+char* buscaInfo(ABPPlus *arv, char* chave);
 
 // Funcao que destroi uma ABP
 void destroiABP(ABPPlus *arv);
 
 // Inicializa arvore binaria que traduz letras - morse
 void inicializaLetrasCod(ABPPlus *arv);
+
+// Inicializa arvore binaria que traduz letras - morse
+void inicializaCodLetras(ABPPlus *arv);
 
 #endif

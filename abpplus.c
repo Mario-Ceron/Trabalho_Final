@@ -81,6 +81,29 @@ char* buscaInfoABP(ABPPlus *arv, int chave){
 
 }
 
+// Funcao auxiliar para buscar uma informacao na ABP
+char* buscaInfoNodo(NoArvBinaria *raiz, char* chave, int* i){
+   if(raiz==NULL){
+      return '\0';}
+   else if (chave[*i]=='.'){
+      (*i)++;
+      return buscaInfoNodo(raiz->esq, chave, i);
+   }else if (chave[*i]=='-'){
+      (*i)++;
+      return buscaInfoNodo(raiz->dir, chave, i);
+   }else
+      return raiz->letra;
+}
+
+// Funcao que busca uma informacao na ABP
+char* buscaInfo(ABPPlus *arv, char* chave){
+
+   int i=0;
+   return buscaInfoNodo(arv->raiz, chave, &i);
+
+
+}
+
 
 
 // Funcao auxiliar para destroir uma ABP

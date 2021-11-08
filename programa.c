@@ -10,7 +10,7 @@ Data:07/11/2021
 #include <string.h>
 #include "abpplus.h"
 
-#define TAM 16
+#define TAM 50
 
 
 //imprime menu principal
@@ -28,7 +28,7 @@ int main(){
    codLetras = criaABP(); // Cria as arvores
    letrasCod = criaABP();
 
-   // inicializaCodLetras(codLetras); // Preenche arvores com as informações necessárias.
+   inicializaCodLetras(codLetras); // Preenche arvores com as informações necessárias.
    inicializaLetrasCod(letrasCod);
 
 
@@ -42,22 +42,49 @@ int main(){
 
             char texto[TAM];
 
-            scanf("%s", texto);
+            fgets(texto, TAM, stdin);
 
-            for(int i=0;i<strlen(texto);i++){
-               if(buscaInfoABP(letrasCod, texto[i])!='\0')
-                  printf(" %s",buscaInfoABP(letrasCod, texto[i]));
+            int i=0;
+            while(texto[i]!='\n'){
+
+               if(texto[i]==' ')
+                  printf("/ ");
+               else if(buscaInfoABP(letrasCod, texto[i])!='\0')
+                  printf("%s ",buscaInfoABP(letrasCod, texto[i]));
+               else
+                  printf("@");
+               i++;
             }
 
          break;}
 
          case 2:{
 
+            char texto[TAM];
+
+            fgets(texto, TAM, stdin);
+
+            int i=0;
+            int j=0;
+
+            char *palavra = strtok(texto, " ");
+
+            while( palavra != NULL ) {
+
+               if(palavra[0]=='/')
+                  printf(" ");
+               else if(buscaInfo(codLetras, palavra)!="\0"||buscaInfo(codLetras, palavra)!="@"||palavra=="/")
+                  printf("%s",buscaInfo(codLetras, palavra));
+
+               palavra = strtok(NULL, " ");
+            }
+
          break;}
 
          case 3:{
 
             imprimeABPIndentado(letrasCod);
+            imprimeABPIndentado(codLetras);
 
          break;}
 
