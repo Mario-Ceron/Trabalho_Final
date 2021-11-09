@@ -12,7 +12,7 @@ Data:07/11/2021
 #include <string.h>
 
 
-#define TAM 256
+#define TAM 5000
 
 
 //imprime menu principal
@@ -50,7 +50,15 @@ int main(){
 
             fgets(texto, TAM, stdin);
 
+            printf("\n\nINPUT: %sOUTPUT: ", texto);
+
             int i=0;
+
+            for(int j=0;j<strlen(texto);j++){
+               if(texto[j]>=97 && texto[j]<=122)
+                  texto[j]=texto[j]-32;
+            }
+
             while(texto[i]!='\n'){
 
                if(texto[i]==' ')
@@ -72,6 +80,8 @@ int main(){
 
             texto[strlen(texto)-1]='\0';
 
+            printf("\n\nINPUT: %s\nOUTPUT: ", texto);
+
             int i=0;
             int j=0;
 
@@ -81,7 +91,7 @@ int main(){
 
                if(palavra[0]==espaco)
                   printf(" ");
-               else if(buscaInfoABP(codLetras, palavra, binario)!='\0'||buscaInfoABP(codLetras, palavra, binario)!='@')
+               else if(buscaInfoABP(codLetras, palavra, binario)!='\0' && buscaInfoABP(codLetras, palavra, binario)!=' ')
                   printf("%c",buscaInfoABP(codLetras, palavra, binario));
 
                palavra = strtok(NULL, " ");
@@ -91,14 +101,80 @@ int main(){
 
          case 3:{
 
-            imprimeAVL(letrasCod);
-            imprimeABPIndentado(codLetras);
+            char buffer[256];
+            FILE *entrada, *saida;
 
+            entrada = fopen("_Entrada.txt", "r");
+            saida = fopen("_Saida.txt", "w");
+
+            if (entrada == NULL || saida == NULL){
+               printf("ERRO: Arquivo nao localizado.\n");
+            }else{
+               while(fgets(buffer, 256, entrada) != NULL){
+                  int i=0;
+                  for(int j=0;j<strlen(buffer);j++){
+                    if(buffer[j]>=97 && buffer[j]<=122)
+                        buffer[j]=buffer[j]-32;
+                  }
+                  while(buffer[i]!='\0'){
+
+                     if(buffer[i]==' ')
+                        fprintf(saida, "%c ", espaco);
+                     else if(buffer[i]=='\n')
+                        fprintf(saida, "\n");
+                     else if(buscaInfoAVL(letrasCod, buffer[i])!='\0')
+                       fprintf(saida, "%s ", buscaInfoAVL(letrasCod, buffer[i]));
+                     else
+                        fprintf(saida, " ");
+                     i++;
+                  }
+               }
+            }
+
+            fclose(entrada);
+            fclose(saida);
          break;}
 
          case 4:{
 
+            char buffer[100];
+            FILE *entrada, *saida;
 
+            entrada = fopen("_Entrada.txt", "r");
+            saida = fopen("_Saida.txt", "w");
+
+            if (entrada == NULL || saida == NULL){
+               printf("ERRO: Arquivo nao localizado.\n");
+            }else{
+               while(fgets(buffer, 100, entrada) != NULL){
+
+                  int tam = strlen(buffer);
+
+                  printf("%s\n", buffer);
+
+                  char *palavra = strtok(buffer, " ");
+
+                  while( palavra != NULL ){
+
+                     char* aux= palavra;
+
+                     palavra = strtok(NULL, " ");
+
+                     if(palavra==NULL && tam==99){
+                        printf("->%s\n ", aux);
+                        fseek(entrada, -strlen(aux)-1, SEEK_CUR);
+                     }else{
+                        if(aux[0]==espaco)
+                           fprintf(saida, " ");
+                        else if(buscaInfoABP(codLetras, aux, binario)!='\0' && buscaInfoABP(codLetras, aux, binario)!=' '){
+                           fprintf(saida, "%c", buscaInfoABP(codLetras, aux, binario));
+                        }
+                     }
+                  }
+               }
+            }
+            fclose(entrada);
+            fclose(saida);
          break;}
 
          case 5:{
@@ -127,7 +203,7 @@ int menuPrincipal(){
    printf("\n\n          MENU PRINCIPAL \n\n");
    printf("1. Letras->Cod. \n");
    printf("2. Cod->Letras. \n");
-   printf("3. Imprime arvore indentado. \n");
+   printf("3. Imprime arvore indentado (teste). \n");
    printf("4. VOID. \n");
    printf("5. VOID. \n\n");
    printf("6. Sair. \n");

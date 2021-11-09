@@ -8,7 +8,7 @@ void preencheArvoreSetup(AVL *letrasCod, ABP *codLetras, char* espaco, char bina
 
    FILE *setup;
 
-   setup = fopen("setup.txt", "r");
+   setup = fopen("__setup.txt", "r");
 
    // Conta o número de linhas.
 
@@ -16,7 +16,7 @@ void preencheArvoreSetup(AVL *letrasCod, ABP *codLetras, char* espaco, char bina
    char aux1;
 
    if(setup==NULL){
-      printf("Arquivo Setup nao localizado.");
+      printf("ERRO: Arquivo Setup nao localizado.\n\n");
    }else while((aux1=fgetc(setup))!=EOF){
       if(aux1=='\n')
          linhas++;

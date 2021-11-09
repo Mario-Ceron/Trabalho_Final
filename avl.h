@@ -29,7 +29,4 @@ char* buscaInfoAVL(AVL *arv, int chave);
 // Funcao que destroi uma AVL
 void destroiAVL(AVL *arv);
 
-// Inicializa arvore binaria que traduz letras - morse
-void inicializaLetrasCod(AVL *arv);
-
 #endif

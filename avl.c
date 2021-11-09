@@ -111,7 +111,7 @@ void insereAVL(AVL *arv, int chave, char codigo[]){
 // Funcao auxiliar para buscar uma informacao na AVL
 char* buscaInfoNodoAVL(NoArvAVL *raiz, int chave){
    if (raiz == NULL){
-      char *infoAux = '\0'; // matricula, nome, email
+      char *infoAux = '\0';
       return infoAux;
    }else if (raiz->chave > chave)
       return buscaInfoNodoAVL(raiz->esq, chave);
