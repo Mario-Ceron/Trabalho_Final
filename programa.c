@@ -6,15 +6,20 @@ Data:07/11/2021
 */
 
 // Inclusao de bibliotecas
+#include "abp.h"
+#include "avl.h"
 #include <stdio.h>
 #include <string.h>
-#include "abpplus.h"
 
-#define TAM 50
+
+#define TAM 256
 
 
 //imprime menu principal
 int menuPrincipal();
+
+// Preenche árvores com Setup
+void preencheArvoreSetup(AVL *letrasCod, ABP *codLetras, char* espaco, char binario[]);
 
 int main(){
 
@@ -22,15 +27,16 @@ int main(){
    int loop=-1;//Mantem loop do comando while até que loop = 0.
    int caso=0;
 
-   ABPPlus *codLetras;
-   ABPPlus *letrasCod;
+   ABP *codLetras;
+   AVL *letrasCod;
 
    codLetras = criaABP(); // Cria as arvores
-   letrasCod = criaABP();
+   letrasCod = criaAVL();
 
-   inicializaCodLetras(codLetras); // Preenche arvores com as informações necessárias.
-   inicializaLetrasCod(letrasCod);
+   char binario[2];
+   char espaco;
 
+   preencheArvoreSetup(letrasCod, codLetras, &espaco, binario);
 
    while(loop != 0){
 
@@ -48,11 +54,11 @@ int main(){
             while(texto[i]!='\n'){
 
                if(texto[i]==' ')
-                  printf("/ ");
-               else if(buscaInfoABP(letrasCod, texto[i])!='\0')
-                  printf("%s ",buscaInfoABP(letrasCod, texto[i]));
+                  printf("%c ", espaco);
+               else if(buscaInfoAVL(letrasCod, texto[i])!='\0')
+                  printf("%s ",buscaInfoAVL(letrasCod, texto[i]));
                else
-                  printf("@");
+                  printf(" ");
                i++;
             }
 
@@ -64,6 +70,8 @@ int main(){
 
             fgets(texto, TAM, stdin);
 
+            texto[strlen(texto)-1]='\0';
+
             int i=0;
             int j=0;
 
@@ -71,10 +79,10 @@ int main(){
 
             while( palavra != NULL ) {
 
-               if(palavra[0]=='/')
+               if(palavra[0]==espaco)
                   printf(" ");
-               else if(buscaInfo(codLetras, palavra)!="\0"||buscaInfo(codLetras, palavra)!="@"||palavra=="/")
-                  printf("%s",buscaInfo(codLetras, palavra));
+               else if(buscaInfoABP(codLetras, palavra, binario)!='\0'||buscaInfoABP(codLetras, palavra, binario)!='@')
+                  printf("%c",buscaInfoABP(codLetras, palavra, binario));
 
                palavra = strtok(NULL, " ");
             }
@@ -83,15 +91,13 @@ int main(){
 
          case 3:{
 
-            imprimeABPIndentado(letrasCod);
+            imprimeAVL(letrasCod);
             imprimeABPIndentado(codLetras);
 
          break;}
 
          case 4:{
 
-         // if(buscaInfoABP(letrasCod, 'A')!='\0')
-         //    printf(" %s",buscaInfoABP(letrasCod, 'A'));
 
          break;}
 
@@ -104,7 +110,7 @@ int main(){
             printf("          PROGRAMA ENCERRADO \n");
             loop=0;//Encera loop do comando while.
             destroiABP(codLetras);
-            destroiABP(letrasCod);
+            destroiAVL(letrasCod);
 
          break;}
 
@@ -119,10 +125,10 @@ int main(){
 int menuPrincipal(){
    int sel;
    printf("\n\n          MENU PRINCIPAL \n\n");
-   printf("1. Traducao. \n");
-   printf("2. VOID. \n");
+   printf("1. Letras->Cod. \n");
+   printf("2. Cod->Letras. \n");
    printf("3. Imprime arvore indentado. \n");
-   printf("4. Busca. \n");
+   printf("4. VOID. \n");
    printf("5. VOID. \n\n");
    printf("6. Sair. \n");
    printf("Acessar:");
