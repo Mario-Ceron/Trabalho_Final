@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void preencheArvoreSetup(AVL *letrasCod, ABP *codLetras, char* espaco, char binario[]){
+void preencheArvoreSetup(AVL *letrasCod, ABP *codLetras, char* espaco, char binario[], char* nomeCodigo){
 
    FILE *setup;
 
@@ -22,7 +22,7 @@ void preencheArvoreSetup(AVL *letrasCod, ABP *codLetras, char* espaco, char bina
          linhas++;
    }
    rewind(setup); // Volta vetor para começo do arquivo;
-   linhas=linhas-3;
+   linhas=linhas-5;
    // Cria vetor de acordo com número de linhas
 
    char *letra = (char*)malloc(linhas * sizeof(char));
@@ -34,6 +34,8 @@ void preencheArvoreSetup(AVL *letrasCod, ABP *codLetras, char* espaco, char bina
    char aux[20];
 
    if(setup!=NULL){
+      fgets(nomeCodigo, 50, setup);
+      fscanf(setup," ",&aux);
       fscanf(setup,"Simbolos binarios: %c e %c", &binario[0], &binario[1]);
       fscanf(setup," ",&aux);
       fscanf(setup,"Espaco = %c", espaco);
@@ -47,8 +49,12 @@ void preencheArvoreSetup(AVL *letrasCod, ABP *codLetras, char* espaco, char bina
       }
    }
 
-   // Insere dados nas árvores criadas na Main
+   //-----DEBUG
+   // for(int i=0; i<linhas; i++){
+   //    printf("%c", letra[i]);
+   // }
 
+   // Insere dados nas árvores criadas na Main
    for(int i=0; i<linhas; i++){
 
       insereABP(codLetras, letra[i], codigo[i], binario);
