@@ -19,18 +19,26 @@ AVL* criaAVL(){
 }
 
 // Funcao auxiliar para imprimir uma AVL
-void imprimeNodoAVL(NoArvAVL *raiz){
+void imprimeNodoAVL(NoArvAVL *raiz, int* contador){
+   int i=0;
    if(raiz != NULL){
-      imprimeNodoAVL(raiz->esq);
-      printf("%d ", raiz->chave);
-      imprimeNodoAVL(raiz->dir);
+      while(i<*contador){
+         printf("~");
+         i++;
+      }
+      (*contador)++;
+      printf("%c->%s\n", raiz->chave, raiz->codigo);
+      imprimeNodoAVL(raiz->esq, contador);
+      imprimeNodoAVL(raiz->dir, contador);
+      (*contador)--;
    }   
 }
 
 // Funcao que imprime uma AVL
-void imprimeAVL(AVL *arv){
+void imprimeAVLIndentado(AVL *arv){
+   int contador=0;
    printf("-----------------------------------------\n");
-   imprimeNodoAVL(arv->raiz);
+   imprimeNodoAVL(arv->raiz, &contador);
    printf("-----------------------------------------\n");
 }
 

@@ -1,0 +1,7 @@
+Observações:
+-A utilização de caracteres especiais deve ser feita de forma cuidadosa. Aconselhamos utilizar apenas os caracteres que estão presentes no arquivo __Setup.txt.
+-O programa, por Default, utiliza apenas caracteres maiúsculos. Caso (por qualquer motivo) seja necessário que caracteres maiúsculos e minúsculos sejam tratados de forma diferente, ajuste primeiro no arquivo __Setup.txt.
+-As traduções no arquivo __Setup.txt devem ser inseridas, uma por linha, entra os simbolos -> e <-. Sempre seguindo a formatação:"símbolo"~espaço~=~espaço~"Código"\n.
+-O código da tradução deve ter no máximo 10 caracteres.
+-O caractere "*" foi escolhido para simbolizar letras/codigos e deve ser utilizado com cautela.
+-Evite usar um mesmo codigo para mais de uma letra. A preferencia será sempre da definida por ultimo.

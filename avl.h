@@ -18,7 +18,7 @@ typedef struct{
 AVL* criaAVL();
 
 // Funcao que imprime uma AVL
-void imprimeAVL(AVL *arv);
+void imprimeAVLIndentado(AVL *arv);
 
 // Funcao que insere um elemento na AVL
 void insereAVL(AVL *arv, int chave, char codigo[]);

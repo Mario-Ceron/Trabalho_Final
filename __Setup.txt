@@ -1,9 +1,12 @@
 Codigo utilizado: Codigo Morse
 
 Simbolos binarios: . e -
- 
+
 Espaco = /
- 
+
+Maiuscula/Minuscula(S ou N): S
+
+->
 A = .-
 B = -...
 C = -.-.
@@ -58,3 +61,4 @@ _ = ..--.-
 $ = ...-..-
 @ = .--.-.
 + = .-.-.
+<-
