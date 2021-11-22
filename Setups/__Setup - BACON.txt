@@ -1,0 +1,34 @@
+Codigo utilizado: Codigo Bacon
+
+Simbolos binarios: A e B
+
+Espaco = /
+
+Maiuscula/Minuscula(S ou N): S
+
+->
+A = AAAAA
+B = AAAAB
+C = AAABA
+D = AAABB
+E = AABAA
+F = AABAB
+G = AABBA
+H = AABBB
+I = ABAAA
+K = ABAAB
+L = ABABA
+M = ABABB
+N = ABBAA
+O = ABBAB
+P = ABBBA
+Q = ABBBB
+R = BAAAA
+S = BAAAB
+T = BAABA
+V = BAABB
+W = BABAA
+X = BABAB
+Y = BABBA
+Z = BABBB
+<-

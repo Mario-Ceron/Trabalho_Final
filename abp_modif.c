@@ -100,13 +100,11 @@ char buscaInfoABP(ABP *arv, char codigo[], char binario[]){
       else if(codigo[i]==binario[0]){
          tmp=tmp->esq;
          i++;
-      }else if(codigo[i]!=binario[0] && codigo[i]!=binario[1]){
+      }else if(codigo[i]!=binario[0] && codigo[i]!=binario[1])
          return '*';
-
-      }
    }
 
-   if(tmp!=NULL && tmp->letra!=' ')
+   if(tmp!=NULL)
       return tmp->letra;
 
    return '*';

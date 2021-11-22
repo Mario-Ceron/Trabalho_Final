@@ -26,7 +26,4 @@ char buscaInfoABP(ABP *arv, char codigo[], char binario[]);
 // Funcao que destroi uma ABP
 void destroiABP(ABP *arv);
 
-// Inicializa arvore binaria que traduz letras - morse
-void inicializaCodLetras(ABP *arv);
-
 #endif

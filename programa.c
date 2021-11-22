@@ -1,8 +1,8 @@
 /*
 Programa: Trabalho Final
-Objetivos: Programa para traduzir letras para Morse (e vice-versa)
-Autor:
-Data:07/11/2021
+Objetivos: Programa para traduzir letras para Códgio (e vice-versa)
+Autores: Giovane dos Santos Guimaraes, Italo Dessimon e Mário Vargas Ceron
+Data:23/11/2021
 */
 
 // Inclusao de bibliotecas
@@ -103,7 +103,7 @@ int main(){
                      return 0;
 
                   preencheArvoresSetup(letrasCod, codLetras, linhas, binario);
-                  printf("\nSetup atualizado!\n")
+                  printf("\nSetup atualizado!\n");
                }
             }
          break;}
@@ -184,12 +184,12 @@ int main(){
 
          break;}
 
-         case 111:{ // DEBUG
+         // case 111:{ // DEBUG
 
-         imprimeAVLIndentado(letrasCod);
-         imprimeABPIndentado(codLetras);
+         // imprimeAVLIndentado(letrasCod);
+         // imprimeABPIndentado(codLetras);
 
-         break;}
+         // break;}
 
          default:
             printf("\nSelecione um menu valido!\n");
